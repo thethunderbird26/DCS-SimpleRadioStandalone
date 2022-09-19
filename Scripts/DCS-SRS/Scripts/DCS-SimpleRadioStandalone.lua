@@ -2435,10 +2435,29 @@ if _ky58Power == 0.1 and SR.round(SR.getButtonPosition(444), 0.1) == 0.1 then
         _channel = 6 -- has two other options - lock to 6
     end
 
-    _radio = _data.radios[2 + SR.getSelectorPosition(144, 0.3)]
-    _radio.encMode = 2 -- Mode 2 is set by aircraft
-    _radio.encKey = _channel
-    _radio.enc = true
+    _cipherSwitch = SR.getSelectorPosition(144,0.1)
+	-- VID - W/B switch as cipher switch: default radio 1, options for both and radio 2
+	if _cipherSwitch == 0 then
+		_radio = _data.radios[2]
+		_radio.encMode = 2 -- Mode 2 is set by aircraft
+		_radio.encKey = _channel
+		_radio.enc = true
+	elseif _cipherSwitch == 1 then
+		_radio = _data.radios[2]
+		_radio.encMode = 2
+		_radio.encKey = _channel
+		_radio.enc = true
+		
+		_radio = _data.radios[3]
+		_radio.encMode = 2
+		_radio.encKey = _channel
+		_radio.enc = true
+	else
+		_radio = _data.radios[3]
+		_radio.encMode = 2
+		_radio.encKey = _channel
+		_radio.enc = true
+	end
 
 end
 
